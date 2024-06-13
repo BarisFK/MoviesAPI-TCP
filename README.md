@@ -126,7 +126,4 @@ This project demonstrates a basic client-server architecture using C# and the TC
   ```
 
 
-## Contributing
-
-Contributions are welcome! Feel free to open issues or pull requests to improve this project.
 
