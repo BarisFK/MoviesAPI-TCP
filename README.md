@@ -1,7 +1,5 @@
-Absolutely! Here's the updated README, incorporating the new features and refining the explanations:
 
-```markdown
-# CSharpMovieServer
+# MoviesAPI-TCP
 
 A simple C# server-client project that interacts with movie data stored in a JSON file.
 
@@ -101,7 +99,7 @@ This project demonstrates a basic client-server architecture using C# and the TC
   {"Code":"92","Id":"tt0167260", "Title": "Updated Title", "Genres":["Drama","Action"]} 
   ```
 
-**Server Responses**
+ ## Server Responses
 
 * **Successful Request (Code 1):**
 
