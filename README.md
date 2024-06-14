@@ -76,7 +76,7 @@ This project demonstrates a basic client-server architecture using C# and the TC
 
 * Get details for a movie with ID "tt0167260":
   ```json
-  {"Code":"2","Id":"tt0167260"}
+  {"Code":"2","Id":"id1"}
   ```
   **Server Response:**
   ```json

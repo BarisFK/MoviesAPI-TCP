@@ -49,31 +49,31 @@ class Server
 
                         switch (Movie!.Code)
                         {
-                            case "1":
+                            case 1:
                                 string moviesList = Kod1(data); // JSON string olarak aktar
                                 byte[] msg = Encoding.ASCII.GetBytes(moviesList); //mesaj oluştur
                                 stream1.Write(msg, 0, msg.Length); //mesajı aktar
                                 break;
 
-                            case "2":
+                            case 2:
                                 string movieDetails = Kod2(data);
                                 byte[] msg2 = Encoding.ASCII.GetBytes(movieDetails);
                                 stream1.Write(msg2, 0, msg2.Length);
                                 break;
 
-                            case "3":
+                            case 3:
                                 string allGenres = Kod3(data);
                                 byte[] msg3 = Encoding.ASCII.GetBytes(allGenres);
                                 stream1.Write(msg3, 0, msg3.Length);
                                 break;
 
-                            case "4":
+                            case 4:
                                 string movieWithGenres = Kod1(data);
                                 byte[] msg4 = Encoding.ASCII.GetBytes(movieWithGenres);
                                 stream1.Write(msg4, 0, msg4.Length);
                                 break;
-                            case "5":
-                                string movieByYear = Kod5(data);
+                            case 5:
+                                string movieByYear = Kod4(data);
                                 byte[] msg5 = Encoding.ASCII.GetBytes(movieByYear);
                                 stream1.Write(msg5, 0, msg5.Length);
                                 break;
@@ -125,7 +125,7 @@ class Server
         public string? Rating { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string? Code { get; set; }
+        public int? Code { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string? Cond { get; set; }
@@ -244,7 +244,7 @@ class Server
 
         if (matchingMovie != null)
         {
-            // Return the full Movie object
+            // Film bilgilerini döndür
             response.Content = new List<Movie> { new Movie
             {
                 Title = matchingMovie.Title,
@@ -258,7 +258,7 @@ class Server
         }
         else
         {
-            response.Code = "hata";
+            System.Console.WriteLine("hata");
         }
 
         return JsonConvert.SerializeObject(response);
@@ -288,23 +288,16 @@ class Server
             }
         }
 
-        // liste oluştur
-        var contentList = new List<Dictionary<string, List<string>>>();
-        contentList.Add(new Dictionary<string, List<string>>
-    {
-        { "Genres", uniqueGenres.OrderBy(g => g).ToList() }
-    });
-
         var response = new
         {
             Code = request!.Code!,
-            Content = contentList
+            Content = uniqueGenres
         };
 
         return JsonConvert.SerializeObject(response);
     }
 
-    public static string Kod5(string jsonRequest)
+    public static string Kod4(string jsonRequest)
     {
         var request = JsonConvert.DeserializeObject<Movie>(jsonRequest);
 
