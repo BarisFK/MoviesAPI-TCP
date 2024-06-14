@@ -1,123 +1,113 @@
 [
-    {
-        "title": "Shawshank Redemption",
-        "rank": 1,
-        "id": "tt0111161",
-        "genres": [
-            "Drama"
-        ],
-        "desc": "A man imprisoned for a crime he didn't commit forms a bond with a fellow inmate.",
-        "year": "1994",
-        "rating": "9.3"
-    },
-    {
-        "title": "Godfather",
-        "rank": 2,
-        "id": "tt0068646",
-        "genres": [
-            "Crime",
-            "Drama"
-        ],
-        "desc": "The aging patriarch of an organized crime dynasty transfers control to his reluctant son.",
-        "year": "1972",
-        "rating": "9.2"
-    },
-    {
-        "title": "Godfather: Part II",
-        "rank": 3,
-        "id": "tt0071562",
-        "genres": [
-            "Crime",
-            "Drama"
-        ],
-        "desc": "The early life and career of Vito Corleone and his son Michael's rise to power.",
-        "year": "1974",
-        "rating": "9.0"
-    },
-    {
-        "title": "Pulp Fiction",
-        "rank": 4,
-        "id": "tt0110912",
-        "genres": [
-            "Crime",
-            "Drama"
-        ],
-        "desc": "The lives of two mob hitmen, a boxer, and others intertwine in four tales of violence.",
-        "year": "1994",
-        "rating": "8.9"
-    },
-    {
-        "title": "The Good, the Bad and the Ugly",
-        "rank": 5,
-        "id": "tt0060196",
-        "genres": [
-            "Western"
-        ],
-        "desc": "Three gunslingers compete to find a fortune in a buried stash of Confederate gold.",
-        "year": "1966",
-        "rating": "8.8"
-    },
-    {
-        "title": "Dark Knight",
-        "rank": 6,
-        "id": "tt0468569",
-        "genres": [
-            "Action",
-            "Crime",
-            "Drama"
-        ],
-        "desc": "Batman faces the Joker, a criminal mastermind who wants to plunge Gotham into anarchy.",
-        "year": "2008",
-        "rating": "9.0"
-    },
-    {
-        "title": "12 Angry Men",
-        "rank": 7,
-        "id": "tt0050083",
-        "genres": [
-            "Crime",
-            "Drama"
-        ],
-        "desc": "A jury holds out to prevent a miscarriage of justice by forcing them to reconsider the evidence.",
-        "year": "1957",
-        "rating": "9.0"
-    },
-    {
-        "title": "Schindler's List",
-        "rank": 8,
-        "id": "tt0108052",
-        "genres": [
-            "Biography",
-            "Drama",
-            "History"
-        ],
-        "desc": "The true story of how businessman Oskar Schindler saved many Jews during WWII.",
-        "year": "1993",
-        "rating": "8.9"
-    },
-    {
-        "title": "Lord of the Rings: The Return of the King",
-        "rank": 9,
-        "id": "tt0167260",
-        "genres": [
-            "Action",
-            "Adventure",
-            "Drama"
-        ],
-        "desc": "The final confrontation between the forces of good and evil in Middle-earth.",
-        "year": "2003",
-        "rating": "8.9"
-    },
-    {
-        "title": "Fight Club",
-        "rank": 10,
-        "id": "tt0137523",
-        "genres": [
-            "Action",
-            "Crime"
-        ],
-        "desc": "An insomniac office worker and a soap salesman create an underground fight club.",
-        "year": "1999",
-        "rating": "8.8"
-    }
+  {
+    "Title": "Shawshank Redemption",
+    "Id": "tt0111161",
+    "Genres": [
+      "Drama"
+    ],
+    "Desc": "A man imprisoned for a crime he didn't commit forms a bond with a fellow inmate.",
+    "Year": "1994",
+    "Rating": "9.3"
+  },
+  {
+    "Title": "Godfather",
+    "Id": "tt0068646",
+    "Genres": [
+      "Crime",
+      "Drama"
+    ],
+    "Desc": "The aging patriarch of an organized crime dynasty transfers control to his reluctant son.",
+    "Year": "1972",
+    "Rating": "9.2"
+  },
+  {
+    "Title": "Godfather: Part II",
+    "Id": "tt0071562",
+    "Genres": [
+      "Crime",
+      "Drama"
+    ],
+    "Desc": "The early life and career of Vito Corleone and his son Michael's rise to power.",
+    "Year": "1974",
+    "Rating": "9.0"
+  },
+  {
+    "Title": "Pulp Fiction",
+    "Id": "tt0110912",
+    "Genres": [
+      "Crime",
+      "Drama"
+    ],
+    "Desc": "The lives of two mob hitmen, a boxer, and others intertwine in four tales of violence.",
+    "Year": "1994",
+    "Rating": "8.9"
+  },
+  {
+    "Title": "The Good, the Bad and the Ugly",
+    "Id": "tt0060196",
+    "Genres": [
+      "Western"
+    ],
+    "Desc": "Three gunslingers compete to find a fortune in a buried stash of Confederate gold.",
+    "Year": "1966",
+    "Rating": "8.8"
+  },
+  {
+    "Title": "Dark Knight",
+    "Id": "tt0468569",
+    "Genres": [
+      "Action",
+      "Crime",
+      "Drama"
+    ],
+    "Desc": "Batman faces the Joker, a criminal mastermind who wants to plunge Gotham into anarchy.",
+    "Year": "2008",
+    "Rating": "9.0"
+  },
+  {
+    "Title": "12 Angry Men",
+    "Id": "tt0050083",
+    "Genres": [
+      "Crime",
+      "Drama"
+    ],
+    "Desc": "A jury holds out to prevent a miscarriage of justice by forcing them to reconsider the evidence.",
+    "Year": "1957",
+    "Rating": "9.0"
+  },
+  {
+    "Title": "Schindler's List",
+    "Id": "tt0108052",
+    "Genres": [
+      "Biography",
+      "Drama",
+      "History"
+    ],
+    "Desc": "The true story of how businessman Oskar Schindler saved many Jews during WWII.",
+    "Year": "1993",
+    "Rating": "8.9"
+  },
+  {
+    "title": "Lord of the Rings: The Return of the King",
+    "Id": "tt0167260",
+    "Genres": [
+      "Action",
+      "Adventure",
+      "Drama"
+    ],
+    "Desc": "The final confrontation between the forces of good and evil in Middle-earth.",
+    "Year": "2003",
+    "rating": "8.9"
+  },
+  {
+    "Title": "Fight Club",
+    "Id": "tt0137523",
+    "Genres": [
+      "Action",
+      "Crime"
+    ],
+    "Desc": "An insomniac office worker and a soap salesman create an underground fight club.",
+    "Year": "1999",
+    "Rating": "8.8"
+  }
 ]

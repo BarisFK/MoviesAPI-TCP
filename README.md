@@ -80,7 +80,7 @@ This project demonstrates a basic client-server architecture using C# and the TC
   ```
   **Server Response:**
   ```json
-  {"Code":"2","Content":[{"Title":"The Shawshank Redemption","Id":"tt0167260","Rank":"1","Rating":"9.3","Genres":["Drama"],"Year":"1994","Desc":"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."}]}
+  {"Code":"2","Content":[{"Title":"The Shawshank Redemption","Id":"tt0167260","Rating":"9.3","Genres":["Drama"],"Year":"1994","Desc":"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."}]}
   ```
 
 
@@ -116,13 +116,13 @@ This project demonstrates a basic client-server architecture using C# and the TC
   ```
 
 
-* Get a list of movies that match all the genres listed, sorted by rank descending:
+* Get a list of movies that match all the genres listed, sorted by Title descending:
   ```json
-  {"Code": "4","Genres":["Comedy","Romance"], "Cond":"Rank"} 
+  {"Code": "4","Genres":["Comedy","Romance"], "Cond":"Title"} 
   ```
    **Server Response:**
   ```json
-  {"Code": "4","Content": [{"Title": "The Princess Bride","Id": "id1"},{"Title": "Groundhog Day","Id": "id2"},...]}  // Movies are sorted by Rank
+  {"Code": "4","Content": [{"Title": "The Princess Bride","Id": "id1"},{"Title": "Groundhog Day","Id": "id2"},...]}  // Movies are sorted by Title
   ```
 
 

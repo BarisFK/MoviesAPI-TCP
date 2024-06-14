@@ -78,6 +78,13 @@ class Server
                                 stream1.Write(msg5, 0, msg5.Length);
                                 break;
 
+                            case 92:
+                                string jsonUpdate = Kod92(data);
+                                byte[] msg6 = Encoding.ASCII.GetBytes(jsonUpdate);
+                                stream1.Write(msg6, 0, msg6.Length);
+                                break;
+
+
                             default:
                                 break;
                         }
@@ -150,7 +157,7 @@ class Server
             movies = movies.Where(m => m.Genres != null && request.Genres.All(genre => m.Genres.Contains(genre)));
         }
 
-        // Varsa şart ile sırlama yap
+        // Varsa Cond ile sıralama yap
         if (request.Cond != null)
         {
             switch (request.Cond)
@@ -175,13 +182,13 @@ class Server
     {
         var request = JsonConvert.DeserializeObject<Movie>(jsonRequest);
 
-        // İstek doğrulama (hem Kod1 hem Kod4 için gerekli)
+        // İstek doğrulama
         if (request == null)
         {
             return JsonConvert.SerializeObject(new
             {
-                Code = "hata",
-                Message = "Geçersiz istek."
+                Code = "Error",
+                Message = "Invalid request."
             });
         }
 
@@ -227,6 +234,15 @@ class Server
     {
         var request = JsonConvert.DeserializeObject<Movie>(jsonRequest);
 
+        if (request == null)
+        {
+            return JsonConvert.SerializeObject(new
+            {
+                Code = "Error",
+                Message = "Invalid request."
+            });
+        }
+
         List<Movie> movies;
         using (StreamReader r = new StreamReader("movies.json"))
         {
@@ -234,7 +250,7 @@ class Server
             movies = JsonConvert.DeserializeObject<List<Movie>>(json)!;
         }
 
-        // Find the movie with the matching ID
+        // Eşleşen filmi bul
         var matchingMovie = movies.FirstOrDefault(m => m.Id == request!.Id);
 
         var response = new Movie
@@ -258,7 +274,7 @@ class Server
         }
         else
         {
-            System.Console.WriteLine("hata");
+            System.Console.WriteLine("Error");
         }
 
         return JsonConvert.SerializeObject(response);
@@ -267,6 +283,15 @@ class Server
     public static string Kod3(string jsonRequest)
     {
         var request = JsonConvert.DeserializeObject<Movie>(jsonRequest);
+
+        if (request == null)
+        {
+            return JsonConvert.SerializeObject(new
+            {
+                Code = "Error",
+                Message = "Invalid request."
+            });
+        }
 
         List<Movie> movies;
         using (StreamReader r = new StreamReader("movies.json"))
@@ -301,6 +326,15 @@ class Server
     {
         var request = JsonConvert.DeserializeObject<Movie>(jsonRequest);
 
+        if (request == null)
+        {
+            return JsonConvert.SerializeObject(new
+            {
+                Code = "Error",
+                Message = "Invalid request."
+            });
+        }
+
         List<Movie> movies;
         using (StreamReader r = new StreamReader("movies.json"))
         {
@@ -312,8 +346,8 @@ class Server
         {
             return JsonConvert.SerializeObject(new
             {
-                Code = "hata",
-                Message = "Yanlış istek. 'Start' and 'End' fields are required."
+                Code = "Error",
+                Message = "Invalid request. 'Start' and 'End' fields are required."
             });
         }
 
@@ -322,7 +356,7 @@ class Server
         {
             return JsonConvert.SerializeObject(new
             {
-                Code = "hata",
+                Code = "Error",
                 Message = "Invalid year range. 'Start' must be a valid year less than or equal to 'End'."
             });
         }
@@ -348,6 +382,91 @@ class Server
         return JsonConvert.SerializeObject(response);
     }
 
+    public static string Kod92(string jsonRequest)
+    {
+        var request = JsonConvert.DeserializeObject<Movie>(jsonRequest);
+
+        if (request == null || string.IsNullOrWhiteSpace(request.Id))
+        {
+            return JsonConvert.SerializeObject(new
+            {
+                Code = "Error",
+                Message = "Invalid Request, ID must be given."
+            });
+        }
+
+        try
+        {
+            string filePath = "movies.json";
+
+            // Veriyi oku
+            List<Movie> movies = JsonConvert.DeserializeObject<List<Movie>>(File.ReadAllText(filePath))!;
+
+            // Eşleşen filmi bul
+            Movie? movieToUpdate = movies.FirstOrDefault(m => m.Id == request.Id);
+
+            if (movieToUpdate != null)
+            {
+                // İstenen değerleri değiştir
+                if (!string.IsNullOrWhiteSpace(request.Title))
+                {
+                    movieToUpdate.Title = request.Title;
+                }
+                if (request.Genres != null && request.Genres.Count > 0)
+                {
+                    movieToUpdate.Genres = request.Genres;
+                }
+                if (!string.IsNullOrWhiteSpace(request.Rating))
+                {
+                    movieToUpdate.Rating = request.Rating;
+                }
+                if (!string.IsNullOrWhiteSpace(request.Year))
+                {
+                    movieToUpdate.Year = request.Year;
+                }
+                if (!string.IsNullOrWhiteSpace(request.Desc))
+                {
+                    movieToUpdate.Desc = request.Desc;
+                }
+                
+
+                
+                // Değiştirilmiş verileri JSON'a geri aktar
+                string updatedJson = JsonConvert.SerializeObject(movies, Formatting.Indented);
+                File.WriteAllText(filePath, updatedJson);
+
+                return JsonConvert.SerializeObject(new
+                {
+                    Code = 92,
+                    Message = "Movie updated successfully!"
+                });
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new
+                {
+                    Code = "Error",
+                    Message = $"Movie with Id '{request.Id}' not found."
+                });
+            }
+        }
+        catch (JsonException ex)
+        {
+            return JsonConvert.SerializeObject(new
+            {
+                Code = "Error",
+                Message = $"Error parsing or updating JSON: {ex.Message}"
+            });
+        }
+        catch (Exception ex)
+        {
+            return JsonConvert.SerializeObject(new
+            {
+                Code = "Error",
+                Message = $"An unexpected error occurred: {ex.Message}"
+            });
+        }
+    }
     static void Main(string[] args)
     {
         ServerMain(args);
