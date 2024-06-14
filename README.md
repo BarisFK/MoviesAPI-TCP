@@ -70,17 +70,17 @@ This project demonstrates a basic client-server architecture using C# and the TC
   ```
    **Server Response:**
   ```json
-  {"Code": "1","Content": [{"Title": "The Shawshank Redemption","Id": "id1"},{"Title": "The Godfather","Id": "id2"},...]}
-  ```
+  {"Code": "1","Content": [{"Title": "The Shawshank Redemption","Id": "id1"},{"Title": "The Godfather","Id": "id2"},... *IDs are examples*]}
+  ``` 
 
 
 * Get details for a movie with ID "tt0167260":
   ```json
-  {"Code":"2","Id":"id1"}
+  {"Code":"2","Id":"tt0167260"}
   ```
   **Server Response:**
   ```json
-  {"Code":"2","Content":[{"Title":"The Shawshank Redemption","Id":"id1","Rank":"1","Rating":"9.3","Genres":["Drama"],"Year":"1994","Desc":"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."}]}
+  {"Code":"2","Content":[{"Title":"The Shawshank Redemption","Id":"tt0167260","Rank":"1","Rating":"9.3","Genres":["Drama"],"Year":"1994","Desc":"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."}]}
   ```
 
 
