@@ -1,29 +1,35 @@
+Absolutely! Here's the updated README, incorporating the new features and refining the explanations:
 
-# CSharpMovieServer 
+```markdown
+# CSharpMovieServer
 
 A simple C# server-client project that interacts with movie data stored in a JSON file.
 
 ## Overview
 
-This project demonstrates a basic client-server architecture using C# and the TCP/IP protocol. The server manages requests for movie information (filtering, searching, etc.) from a local JSON dataset ("movies.json"), while the client allows users to interact with this data through a command-line interface.
+This project demonstrates a basic client-server architecture using C# and the TCP/IP protocol. The server manages requests for movie information (filtering, searching, sorting, and updating) from a local JSON dataset ("movies.json"), while the client allows users to interact with this data through a command-line interface.
 
 ## Features
 
 **Server:**
 
 * **Handles requests:**
-    * Retrieves a list of movies (code 1/4)
+    * Retrieves a list of movies (code 1)
     * Gets detailed information for a specific movie (code 2)
     * Lists all unique genres (code 3)
     * Filters movies by year range (code 5)
-* **Data Format:**  Exchanges data in JSON format for flexibility.
-* **Error Handling:**  Manages invalid requests and missing data.
+    * Filters movies by multiple genres, optionally sorting the results (code 4)
+    * Updates movie data based on the given movie ID (code 92)
+* **Data Format:** Exchanges data in JSON format for flexibility.
+* **Error Handling:** Manages invalid requests and missing data.
+* **Sorting:**  Allows sorting of filtered results by Rank, Title, or Rating (code 4).
+* **Data Update:** Supports updating movie details in the JSON file (code 92).
 
 **Client:**
 
 * **Command-line Interface:** Simple interface to send requests to the server.
-* **Sends JSON requests:**  Includes code (request type) and optional parameters.
-* **Displays responses:**  Presents movie data received from the server.
+* **Sends JSON requests:** Includes code (request type) and optional parameters.
+* **Displays responses:** Presents movie data received from the server.
 
 ## Getting Started
 
@@ -66,64 +72,71 @@ This project demonstrates a basic client-server architecture using C# and the TC
 
 * Get a list of all movies:
   ```json
-  {"Code":"1"} 
+  {"Code":"1"}  
   ```
-   **Server Response:**
-  ```json
-  {"Code": "1","Content": [{"Title": "The Shawshank Redemption","Id": "id1"},{"Title": "The Godfather","Id": "id2"},... *IDs are examples*]}
-  ``` 
-
 
 * Get details for a movie with ID "tt0167260":
   ```json
   {"Code":"2","Id":"tt0167260"}
   ```
-  **Server Response:**
-  ```json
-  {"Code":"2","Content":[{"Title":"The Shawshank Redemption","Id":"tt0167260","Rating":"9.3","Genres":["Drama"],"Year":"1994","Desc":"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."}]}
-  ```
-
 
 * List all genres:
   ```json
   {"Code":"3"}
   ```
-  **Server Response:**
-  ```json
-  {"Code":"3","Content":[{"Genres":["Action","Adventure","Crime","Drama","Thriller","War","Western",...]}]}
-  ```
-
 
 
 * Get movies released between 2010 and 2015:
   ```json
   {"Code":"5","Start":"2010","End":"2015"}
   ```
-  **Server Response:**
-  ```json
-  {"Code":"5","Content":[{"Title":"Inception","Id":"id1","Year":"2010"},{"Title":"The King's Speech","Id":"id2","Year":"2010"},...]}
-  ```
-  
-
-* Get a list of movies that match all the genres listed:
-  ```json
-  {"Code": "4","Genres":["Comedy","Romance"]}
-  ```
-   
-  **Server Response:**
-  ```json
-  {"Code": "4","Content": [{"Title": "The Princess Bride","Id": "id1"},{"Title": "Groundhog Day","Id": "id2"},...]}
-  ```
-
 
 * Get a list of movies that match all the genres listed, sorted by Title descending:
   ```json
-  {"Code": "4","Genres":["Comedy","Romance"], "Cond":"Title"} 
+  {"Code": "4","Genres":["Comedy","Romance"], "Cond":"Title"}  
   ```
-   **Server Response:**
+
+* Update movie data:
   ```json
-  {"Code": "4","Content": [{"Title": "The Princess Bride","Id": "id1"},{"Title": "Groundhog Day","Id": "id2"},...]}  // Movies are sorted by Title
+  {"Code":"92","Id":"tt0167260", "Title": "Updated Title", "Genres":["Drama","Action"]} 
   ```
 
+**Server Responses**
 
+* **Successful Request (Code 1):**
+
+```json
+{"Code": "1","Content": [{"Title": "The Shawshank Redemption","Id": "id1"},{"Title": "The Godfather","Id": "id2"},...]}
+```
+
+* **Successful Request (Code 2):**
+
+```json
+{"Code":"2","Content":[{"Title":"The Shawshank Redemption","Id":"tt0167260","Rating":"9.3","Genres":["Drama"],"Year":"1994","Desc":"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."}]}
+```
+
+* **Successful Request (Code 3):**
+
+```json
+{"Code":"3","Content":["Action","Adventure","Crime","Drama","Thriller","War","Western",...]}
+```
+
+* **Successful Request (Code 4):**
+
+```json
+{"Code": "4","Content": [{"Title": "When Harry Met Sally","Id": "id3"}, {"Title": "Groundhog Day","Id": "id4"},...]} // Movies sorted by Title in descending order
+```
+
+* **Successful Update (Code 92):**
+
+```json
+{"Code": 92, "Message": "Movie updated successfully!"}
+```
+
+
+* **Error Response:**
+
+```json
+{"Code": "Error", "Message": "Invalid request."} 
+```
 
